@@ -11,7 +11,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middlewares
-app.use(cors()); // Habilita CORS para todas las rutas
+app.use(cors({
+  origin: '*', // o restringe a tu dominio PWA si prefieres
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+}));
 app.use(express.json()); // Permite que el servidor entienda JSON
 
 // 3. Conectar a MongoDB Atlas
