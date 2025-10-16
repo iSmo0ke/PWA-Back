@@ -30,7 +30,7 @@ const Activity = mongoose.model('Activity', activitySchema);
 
 // Endpoint para guardar una nueva actividad
 // Esta es la ruta que llamará tu Service Worker
-app.post('/activities', async (req, res) => {
+app.post('/activitiesPost', async (req, res) => {
   try {
     const { text, timestamp } = req.body;
     const newActivity = new Activity({ text, timestamp });
@@ -43,7 +43,7 @@ app.post('/activities', async (req, res) => {
 
 // Endpoint para obtener todas las actividades
 // Lo usarás en tu frontend para mostrar las actividades sincronizadas
-app.get('/activities', async (req, res) => {
+app.get('/activitiesGet', async (req, res) => {
   try {
     const activities = await Activity.find().sort({ timestamp: -1 });
     res.status(200).json(activities);
@@ -55,4 +55,5 @@ app.get('/activities', async (req, res) => {
 // 6. Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
+  console.log(`🚀 App ${app}`)
 });
